@@ -1,5 +1,0 @@
-<template name="noproj">
-    <button type="primary" size="default">创建项目</button>
-    <button type="default" size="default" bindtap="qrscan">扫一扫</button>
-    <text>{{text}}</text>
-</template>
