@@ -1,0 +1,42 @@
+view.container{
+    width: 100vw;
+    height: 100vh;
+}
+view.noproj.container{
+    padding: 10px;
+    background-color: #F0F0F0;
+}
+view.canvas_row{
+    width: 100vw;
+    height: 25vh;
+}
+view.canvas_box{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    font-size: 18pt;
+}
+view.canvas_box>text{
+}
+view.member_info>image{
+    width: 50px;
+    height: 50px;
+}
+navigator.noproj_top{
+    margin-top: 5px;
+    width: calc(100% - 20px);
+    height: calc(50% - 20px);
+    border-radius: 2px;
+    background-color: #fff;
+}
+view.noproj_bottom{
+    margin-top: 10px;
+    border-radius: 2px;
+    width: calc(100% - 20px);
+    height: calc(50% - 20px);
+    background-color: #fff;
+}
+

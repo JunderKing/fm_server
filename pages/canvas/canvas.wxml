@@ -1,0 +1,34 @@
+<view class="container">
+    <view class="canvas_row">
+        <view class="canvas_box detail_canvas">
+            <text>细分</text>
+        </view>
+        <view class="canvas_box painpoiont_canvas">
+            <text>痛点</text>
+        </view>
+    </view>
+    <view class="canvas_row">
+        <view class="canvas_box detail_canvas">
+            <text>价值</text>
+        </view>
+        <view class="canvas_box painpoiont_canvas">
+            <text>方案</text>
+        </view>
+    </view>
+    <view class="canvas_row">
+        <view class="canvas_box detail_canvas">
+            <text>指标</text>
+        </view>
+        <view class="canvas_box painpoiont_canvas">
+            <text>收入</text>
+        </view>
+    </view>
+    <view class="canvas_row">
+        <view class="canvas_box detail_canvas">
+            <text>渠道</text>
+        </view>
+        <view class="canvas_box painpoiont_canvas">
+            <text>成长</text>
+        </view>
+    </view>
+</view>

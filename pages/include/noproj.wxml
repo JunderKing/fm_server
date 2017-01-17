@@ -1,0 +1,10 @@
+<template name="noproj">
+    <view class="container noproj">
+        <navigator class="noproj_top" url="/pages/project/newproj" navigate hover-class="navigator-hover">
+            <text>创建项目</text>
+        </navigator>
+        <view class="noproj_bottom" bindtap="qrscan">
+            <text>扫一扫加入项目</text>
+        </view>
+    </view>
+</template>

@@ -1,0 +1,23 @@
+<import src="../include/noproj.wxml"/>
+
+<template is="noproj" wx:if="{{false}}"/>
+
+<view class="container" wx:if="{{true}}">
+    <view class="proj_title">
+        <text>项目标题</text>
+    </view>
+    <view class="proj_member">
+        <view class="member_info">
+            <image src="{{src}}"></image>
+            <text>角色</text>
+            <text>昵称</text>
+        </view>
+    </view>
+    <view class="proj_intro">
+        <text>项目简介</text>
+        <text>使命</text>
+        <text>愿景</text>
+        <text>价值观</text>
+    </view>
+</view>
+

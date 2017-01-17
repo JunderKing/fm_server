@@ -1,0 +1,14 @@
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="section section_gap">
+        <input type="text" placeholder="请输入项目名称"/>
+        <textarea placeholder="请输入项目简介"/>
+        <input type="text" placeholder="请输入项目愿景"/>
+        <input type="text" placeholder="请输入使命" />
+        <input type="text" placeholder="请输入项目价值观"/>
+    </view>
+    <view class="btn-area">
+      <button formType="submit" type="primary">Submit</button>
+    </view>
+  </form>
+</view>

@@ -1,0 +1,52 @@
+{
+    "pages": [
+        "pages/pulse/pulse",
+        "pages/canvas/canvas",
+        "pages/find/find",
+        "pages/project/project",
+        "pages/project/newproj"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#000",
+        "navigationBarTextStyle": "balck",
+        "navigationBarTitleText": "校园VC自由人",
+        "backgroundColor": "#ffffff",
+        "backgroundTextStyle": "dark",
+        "enablePullDownRefresh": "true"
+    },
+    "tabBar": {
+        "color": "#000",
+        "selectedColor": "#ff8040",
+        "backgroundColor": "#fff",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/pulse/pulse",
+                "text": "脉搏",
+                "iconPath": "img/pulse.png",
+                "selectedIconPath": "img/pulse2.png"
+            },
+            {
+                "pagePath": "pages/canvas/canvas",
+                "text": "画布",
+                "iconPath": "img/canvas.png",
+                "selectedIconPath": "img/canvas2.png"
+            },
+
+            {
+                "pagePath": "pages/find/find",
+                "text": "发现",
+                "iconPath": "img/find.png",
+                "selectedIconPath": "img/find2.png"
+            },
+
+            {
+                "pagePath": "pages/project/project",
+                "text": "项目",
+                "iconPath": "img/project.png",
+                "selectedIconPath": "img/project2.png"
+            }
+        ],
+        "position": "bottom"
+    }
+}
