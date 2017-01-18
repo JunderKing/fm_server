@@ -1,5 +1,6 @@
 <?php
 
+include_once(dirname(__FILE__)."/../global.php");
 class Api {
     protected $params = array();
     protected $result;

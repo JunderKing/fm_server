@@ -27,7 +27,7 @@ class Database {
         }
         return $data;
     }
-    function eacape($string){
+    function escape($string){
         return $this->mysqli->real_escape_string($string);
     }
     function insertId(){

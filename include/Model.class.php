@@ -1,9 +1,10 @@
 <?php
 
+include_once(dirname(__FILE__) . "/../global.php");
 class Model{
     protected $dbhandle;
     public function __construct(){
-        $dbhandle = new Database();
+        $this->dbhandle = new Database();
     }
 
     function getSessionId($code){
@@ -30,15 +31,15 @@ class Model{
         $uid = intval($uid);
         $time = time();
         $title = $this->dbhandle->escape($title);
-        $sql = "INSERT INTO fm_group(group_id, uid, title, ctime) VALUES(null, $uid, $title, $time)";
+        $sql = "INSERT INTO fm_group(creator_id, title) VALUES($uid, '$title')";
         $data = $this->dbhandle->execute($sql);
         return $data;
     }
 
     function updateGroupInfo($group_id, $title){
         $group_id = intval($group_id);
-        $title = $this->dbhandle->eacape($title);
-        $sql = "UPDATE fm_group SET title=$title WHERE group_id=$group_id";
+        $title = $this->dbhandle->escape($title);
+        $sql = "UPDATE fm_group SET title='$title' WHERE group_id=$group_id";
         $data = $this->dbhandle->execute($sql);
         return $data;
     }
@@ -46,7 +47,7 @@ class Model{
     function addGroupProj($group_id, $proj_id){
         $group_id = intval($group_id);
         $proj_id = intval($proj_id);
-        $sql = "INSET INTO fm_group_proj(group_id, proj_id) VALUES($group_id, $proj_id)";
+        $sql = "INSERT INTO fm_group_proj(group_id, proj_id) VALUES($group_id, $proj_id)";
         $data = $this->dbhandle->execute($sql);
         return $data;
     }
@@ -68,12 +69,15 @@ class Model{
         $vision = $this->dbhandle->escape($vision);
         $value = $this->dbhandle->escape($value);
         $data = array();
-        $sql = "INSERT INTO fm_project(creator_id, title, intro, mission, vision, value) VALUES($creator_id, $title, $intro, $mission, $vision, $value)";
+        $sql = "INSERT INTO fm_project(creator_id, title, intro, mission, vision, value) VALUES($creator_id, '$title', '$intro', '$mission', '$vision', '$value')";
+        echo $sql;
         $data[] = $this->dbhandle->execute($sql);
-        $proj_id = $this->dbhandle->insert_id;
+        $proj_id = $this->dbhandle->insertId();
         $sql = "INSERT INTO fm_proj_member(uid, proj_id, role) VALUES($creator_id, $proj_id, $role)";
+        echo $sql;
         $data[] = $this->dbhandle->execute($sql);
-        $sql = "INSERT INTO fm_canvas(proj_id) VALUES($proj_id)";
+        $sql = "INSERT INTO fm_canvas(proj_id, detail, painpoint, value, scheme, indicator, income, channel, growth) VALUES($proj_id,'','','','','','','','')";
+        echo $sql;
         $data[] = $this->dbhandle->execute($sql);
         return $data;
     }
@@ -85,7 +89,7 @@ class Model{
         $mission = $this->dbhandle->escape($mission);
         $vision = $this->dbhandle->escape($vision);
         $value = $this->dbhandle->escape($value);
-        $sql = "UPDATE fm_project SET creator_id=$creator_id, title=$title, intro=$intro, mission=$mission, vision=$vision, value=$value WHERE proj_id=$proj_id";
+        $sql = "UPDATE fm_project SET title='$title', intro='$intro', mission='$mission', vision='$vision', value='$value' WHERE proj_id=$proj_id";
         $data = $this->dbhandle->execute($sql);
         return $data;
     }
@@ -125,10 +129,10 @@ class Model{
         $proj_id = intval($proj_id);
         $week_no = intval($int_no);
         $content = $this->dbhandle->escape($content);
-        $sql = "INSERT INTO fm_wkreport(proj_id, week_no, content, redactor_id) VALUES($proj_id, $week_no, $content, $uid)";
+        $sql = "INSERT INTO fm_wkreport(proj_id, week_no, content, redactor_id) VALUES($proj_id, $week_no, '$content', $uid)";
         $data = $this->dbhandle->execute($sql);
         if (!is_int($data)) {
-            $sql = "UPDATE fm_wkreport SET content=$content, redactor_id=$uid WHERE proj_id=$proj_id AND week_no=$week_no";
+            $sql = "UPDATE fm_wkreport SET content='$content', redactor_id=$uid WHERE proj_id=$proj_id AND week_no=$week_no";
             $data = $this->dbhandle->execute($sql);
         }
         return $data;
@@ -147,10 +151,10 @@ class Model{
         $month_no = intval($month_no);
         $content = $this->dbhandle->escape($content);
         $pdf_url = $this->dbhandle->escape($pdf_url);
-        $sql = "INSERT INTO fm_mthrecord(redactor_id, proj_id, month_no, content, pdf_url), VALUES($uid, $proj_id, $month_no, $content, $pdf_url)";
+        $sql = "INSERT INTO fm_mthrecord(redactor_id, proj_id, month_no, content, pdf_url) VALUES($uid, $proj_id, $month_no, '$content', '$pdf_url')";
         $data = $this->dbhandle->execute($sql);
         if (!is_int($data)) {
-            $sql = "UPDATE fm_mthrecord SET redactor_id=$uid, content=$content, pdf_url=$pdf_url WHERE proj_id=$proj_id AND month_no=$month_no";
+            $sql = "UPDATE fm_mthrecord SET redactor_id=$uid, content='$content', pdf_url='$pdf_url' WHERE proj_id=$proj_id AND month_no=$month_no";
             $data = $this->dbhandle->execute($sql);
         }
         return $data;
@@ -168,10 +172,10 @@ class Model{
         $proj_id = intval($proj_id);
         $content = $this->dbhandle->escape($content);
         $photo_url = $this->dbhandle->escape($photo_url);
-        $sql = "INSERT INTO fm_summary(redactor_id, proj_id, content, photo_url) VALUES($uid, $proj_id, $content, $photo_url)";
+        $sql = "INSERT INTO fm_summary(redactor_id, proj_id, content, photo_url) VALUES($uid, $proj_id, '$content', '$photo_url')";
         $data = $this->dbhandle->execute($sql);
         if (!is_int($data)) {
-            $sql = "UPDATE fm_summary SET redactor_id=$uid, content=$content, photo_url=$photo_url WHERE proj_id=$proj_id";
+            $sql = "UPDATE fm_summary SET redactor_id=$uid, content='$content', photo_url='$photo_url' WHERE proj_id=$proj_id";
             $data = $this->dbhandle->execute($sql);
         }
         return $data;
@@ -184,11 +188,11 @@ class Model{
         return $data;
     }
 
-    function updateCanvaeInfo($proj_id, $field, $content){
+    function updateCanvasInfo($proj_id, $field, $content){
         $proj_id = intval($proj_id);
         $field = $this->dbhandle->escape($field);
         $content = $this->dbhandle->escape($content);
-        $sql = "UPDATE fm_canvas SET $field=$content WHERE proj_id=$proj_id";
+        $sql = "UPDATE fm_canvas SET $field='$content' WHERE proj_id=$proj_id";
         $data = $this->dbhandle->execute($sql);
         return $data;
     }
@@ -198,7 +202,7 @@ class Model{
         $canvas_id = intval($canvas_id);
         $title = $this->dbhandle->escape($title);
         $assumption = $this->dbhandle->escape($assumption);
-        $sql = "INSERT INTO fm_card(proj_id, canvas_id, title, assumption) VALUES($proj_id, $canvas_id, $title, $assumption)";
+        $sql = "INSERT INTO fm_card(proj_id, canvas_id, title, assumption) VALUES($proj_id, $canvas_id, '$title', '$assumption')";
         $data = $this->dbhandle->execute($sql);
         return $data;
     }
@@ -216,7 +220,7 @@ class Model{
         $title = $this->dbhandle->escape($title);
         $assumption = $this->dbhandle->escape($assumption);
         $result = $this->dbhandle->escape($result);
-        $sql = "UPDATE fm_card SET title=$title, assumption=$assumption, result=$result WHERE card_id=$card_id";
+        $sql = "UPDATE fm_card SET title='$title', assumption='$assumption', result='$result' WHERE card_id=$card_id";
         $data = $this->dbhandle->execute($sql);
         return $data;
     }
@@ -244,8 +248,17 @@ class Model{
         $target_id = intval($target_id);
         $target_type = intval($target_type);
         $content = $this->dbhandle->escape($content);
-        $sql = "INSERT INTO fm_comment(commentor_id, proj_id, target_id, target_type, content) VALUES($uid, $proj_id, $target_id, $target_type, $content)";
+        $sql = "INSERT INTO fm_comment(commentor_id, proj_id, target_id, target_type, content) VALUES($uid, $proj_id, $target_id, $target_type, '$content')";
         $data = $this->dbhandle->execute($sql);
+        return $data;
+    }
+
+    function getComment($proj_id, $target_id, $target_type){
+        $proj_id = intval($proj_id);
+        $target_id = intval($target_id);
+        $target_type = intval($target_type);
+        $sql = "SELECT * FROM fm_comment WHERE proj_id=$proj_id AND target_id=$target_id AND target_type=$target_type";
+        $data = $this->dbhandle->query($sql);
         return $data;
     }
 
@@ -263,8 +276,15 @@ class Model{
         $uid = intval($uid);
         $comment_id = intval($comment_id);
         $content = $this->dbhandle->escape($content);
-        $sql = "INSERT INTO fm_reply(comment_id, replier_id, content) VALUES($comment_id, $uid, $content)";
+        $sql = "INSERT INTO fm_reply(comment_id, replier_id, content) VALUES($comment_id, $uid, '$content')";
         $data = $this->dbhandle->execute($sql);
+        return $data;
+    }
+
+    function getReply($comment_id){
+        $comment_id = intval($comment_id);
+        $sql = "SELECT * FROM fm_reply WHERE comment_id=$comment_id";
+        $data = $this->dbhandle->query($sql);
         return $data;
     }
 
@@ -279,8 +299,15 @@ class Model{
         $uid = intval($uid);
         $card_id = intval($card_id);
         $content = $this->dbhandle->escape($content);
-        $sql = "INSERT INTO fm_card_comment(commentor_id, card_id, content) VALUES($uid, $card_id, $content)";
+        $sql = "INSERT INTO fm_card_comment(commentor_id, card_id, content) VALUES($uid, $card_id, '$content')";
         $data = $this->dbhandle->execute($sql);
+        return $data;
+    }
+
+    function getCardComment($card_id){
+        $card_id = intval($card_id);
+        $sql = "SELECT * FROM fm_card_comment WHERE card_id=$card_id";
+        $data = $this->dbhandle->query($sql);
         return $data;
     }
 
@@ -297,9 +324,16 @@ class Model{
     function addCardReply($uid, $comment_id, $content){
         $uid = intval($uid);
         $comment_id = intval($comment_id);
-        $content = $this->dbhandle->escape($sql);
-        $sql = "INSERT INTO fm_card_reply(replier_id, comment_id, content) VALUES($uid, $comment_id, $content)";
+        $content = $this->dbhandle->escape($content);
+        $sql = "INSERT INTO fm_card_reply(replier_id, comment_id, content) VALUES($uid, $comment_id, '$content')";
         $data = $this->dbhandle->execute($sql);
+        return $data;
+    }
+
+    function getCardReply($comment_id){
+        $comment_id = intval($comment_id);
+        $sql = "SELECT * FROM fm_card_reply WHERE comment_id=$comment_id";
+        $data = $this->dbhandle->query($sql);
         return $data;
     }
     
