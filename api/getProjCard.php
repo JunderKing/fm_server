@@ -2,14 +2,12 @@
 
 include_once(dirname(__FILE__)."/../global.php");
 
-class updateWeekReport extends Api {
-    function main(){
+class getProjCard extends Api {
+    function main (){
         $this->getParams();
         $uid = $this->params['uid'];
         $proj_id = $this->params['proj_id'];
-        $week_no = $this->params['week_no'];
-        $content = $this->params['content'];
-        $this->result = $this->model->updateWeekReport($uid, $proj_id, $week_no, $content);
+        $this->result = $this->model->getProjCard($uid, $proj_id);
         if (is_int($this->result)) {
             $this->errmsg = $this->result;
             $this->result = '';
@@ -18,5 +16,5 @@ class updateWeekReport extends Api {
     }
 }
 
-$updateWeekReport = new updateWeekReport();
-$updateWeekReport->main();
+$getProjCard = new getProjCard();
+$getProjCard->main();

@@ -2,11 +2,14 @@
 
 include_once(dirname(__FILE__)."/../global.php");
 
-class getProjInfo extends Api {
+class updateProjInfo extends Api {
     function main(){
         $this->getParams();
+        $uid = $this->params['uid'];
         $proj_id = $this->params['proj_id'];
-        $this->result = $this->model->getProjInfo($proj_id);
+        $field = $this->params['field'];
+        $value = $this->params['value'];
+        $this->result = $this->model->updateProjInfo($uid, $proj_id, $field, $value);
         if (is_int($this->result)) {
             $this->errmsg = $this->result;
             $this->result = '';
@@ -15,5 +18,5 @@ class getProjInfo extends Api {
     }
 }
 
-$getProjInfo = new getProjInfo();
-$getProjInfo->main();
+$updateProjInfo = new updateProjInfo();
+$updateProjInfo->main();

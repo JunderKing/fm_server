@@ -2,12 +2,11 @@
 
 include_once(dirname(__FILE__)."/../global.php");
 
-class addProjMember extends Api {
+class getMyProject extends Api {
     function main (){
         $this->getParams();
-        $proj_id = $this->params['proj_id'];
         $uid = $this->params['uid'];
-        $this->result = $this->model->addProjMember($uid, $proj_id);
+        $this->result = $this->model->getMyProject($uid);
         if (is_int($this->result)) {
             $this->errmsg = $this->result;
             $this->result = '';
@@ -16,5 +15,5 @@ class addProjMember extends Api {
     }
 }
 
-$addProjMember = new addProjMember();
-$addProjMember->main();
+$getMyProject = new getMyProject();
+$getMyProject->main();

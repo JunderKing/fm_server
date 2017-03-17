@@ -2,13 +2,12 @@
 
 include_once(dirname(__FILE__)."/../global.php");
 
-class AddCardReply extends Api {
+class changeCurProj extends Api {
     function main(){
         $this->getParams();
         $uid = $this->params['uid'];
-        $comment_id = $this->params['comment_id'];
-        $content = $this->params['content'];
-        $this->result = $this->model->addCardReply($uid, $comment_id, $content);
+        $proj_id = $this->params['proj_id'];
+        $this->result = $this->model->changeCurProj($uid, $proj_id);
         if (is_int($this->result)) {
             $this->errmsg = $this->result;
             $this->result = '';
@@ -17,5 +16,5 @@ class AddCardReply extends Api {
     }
 }
 
-$addClassReply = new AddCardReply();
-$addClassReply->main();
+$changeCurProj = new changeCurProj();
+$changeCurProj->main();

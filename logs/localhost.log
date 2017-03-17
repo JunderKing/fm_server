@@ -1,0 +1,1 @@
+[Fri Mar 17 14:46:27.145803 2017] [authz_core:error] [pid 85856] [client 127.0.0.1:54765] AH01630: client denied by server configuration: /Users/JunK/projects/php/freeman/fm_server/mmtls

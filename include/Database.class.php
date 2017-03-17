@@ -6,7 +6,7 @@ class Database {
         $this->connectDb();
     }
     function connectDb(){
-        $this->mysqli = new mysqli("127.0.0.1", "myuser", "youxiwang", "freeman");
+        $this->mysqli = new mysqli("127.0.0.1", "junderking", "youxiwang", "dq_freeman");
         if ($this->mysqli->connect_errno) {
             printf ("connect failed:%s\n", $this->connect_error);
             exit();

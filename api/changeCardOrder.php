@@ -2,12 +2,12 @@
 
 include_once(dirname(__FILE__)."/../global.php");
 
-class addProjMember extends Api {
-    function main (){
+class changeCardOrder extends Api {
+    function main(){
         $this->getParams();
         $proj_id = $this->params['proj_id'];
-        $uid = $this->params['uid'];
-        $this->result = $this->model->addProjMember($uid, $proj_id);
+        $card_id = $this->params['card_id'];
+        $this->result = $this->model->changeCardOrder($proj_id, $card_id);
         if (is_int($this->result)) {
             $this->errmsg = $this->result;
             $this->result = '';
@@ -16,5 +16,5 @@ class addProjMember extends Api {
     }
 }
 
-$addProjMember = new addProjMember();
-$addProjMember->main();
+$changeCardOrder = new changeCardOrder();
+$changeCardOrder->main();

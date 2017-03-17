@@ -2,11 +2,12 @@
 
 include_once(dirname(__FILE__)."/../global.php");
 
-class getMonthRecord extends Api {
+class changeRole extends Api {
     function main (){
         $this->getParams();
-        $proj_id = $this->params['proj_id'];
-        $this->result = $this->model->getMonthRecord($proj_id);
+        $uid = $this->params['uid'];
+        $role = $this->params['role'];
+        $this->result = $this->model->changeRole($uid, $role);
         if (is_int($this->result)) {
             $this->errmsg = $this->result;
             $this->result = '';
@@ -15,5 +16,5 @@ class getMonthRecord extends Api {
     }
 }
 
-$getMonthRecord = new getMonthRecord();
-$getMonthRecord->main();
+$changeRole = new changeRole();
+$changeRole->main();

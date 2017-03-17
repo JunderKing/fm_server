@@ -1,5 +1,5 @@
 getSessionId
-decryptInfo
+getUserId
 
 createGroup
 updateGroupInfo
@@ -30,14 +30,18 @@ updateCardInfo
 deleteCard
 
 addComment
+getComment
 deleteComment
 
 addReply
+getReply
 deleteReply
 
 addCardComment
+getCardComment
 deleteCardComment
 
 addCardReply
+getCardReply
 deleteCardReply
 

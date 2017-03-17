@@ -2,15 +2,15 @@
 
 include_once(dirname(__FILE__)."/../global.php");
 
-class updateMonthRecord extends Api {
+class updatePulseInfo extends Api {
     function main(){
         $this->getParams();
         $uid = $this->params['uid'];
         $proj_id = $this->params['proj_id'];
-        $month_no = $this->params['month_no'];
+        $pulse_id = $this->params['pulse_id'];
+        $pulse_no = $this->params['pulse_no'];
         $content = $this->params['content'];
-        $pdf_url = $this->params['pdf_url'];
-        $this->result = $this->model->updateMonthRecord($uid, $proj_id, $month_no, $content, $pdf_url);
+        $this->result = $this->model->updatePulseInfo($uid, $proj_id, $pulse_id, $pulse_no, $content);
         if (is_int($this->result)) {
             $this->errmsg = $this->result;
             $this->result = '';
@@ -19,5 +19,5 @@ class updateMonthRecord extends Api {
     }
 }
 
-$getMonthRecord = new updateMonthRecord();
-$getMonthRecord->main();
+$updatePulseInfo = new updatePulseInfo();
+$updatePulseInfo->main();

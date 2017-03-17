@@ -2,11 +2,13 @@
 
 include_once(dirname(__FILE__)."/../global.php");
 
-class GetCardReply extends Api {
+class login extends Api {
     function main(){
         $this->getParams();
-        $comment_id = $this->params['comment_id'];
-        $this->result = $this->model->getCardReply($comment_id);
+        $code = $this->params['code'];
+        $raw_data = $this->params['raw_data'];
+        $iv = $this->params['iv'];
+        $this->result = $this->model->login($code, $raw_data, $iv);
         if (is_int($this->result)) {
             $this->errmsg = $this->result;
             $this->result = '';
@@ -15,5 +17,5 @@ class GetCardReply extends Api {
     }
 }
 
-$getCardReply = new GetCardReply();
-$getCardReply->main();
+$login = new login();
+$login->main();

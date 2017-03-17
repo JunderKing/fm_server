@@ -7,10 +7,10 @@ class addComment extends Api {
         $this->getParams();
         $uid = $this->params['uid'];
         $proj_id = $this->params['proj_id'];
-        $target_id = $this->params['target_id'];
-        $target_type = $this->params['target_type'];
+        $field = $this->params['field'];
+        $field_id = $this->params['field_id'];
         $content = $this->params['content'];
-        $this->result = $this->model->addComment($uid, $proj_id, $target_id, $target_type, $content);
+        $this->result = $this->model->addComment($uid, $proj_id, $field, $field_id, $content);
         if (is_int($this->result)) {
             $this->errmsg = $this->result;
             $this->result = '';

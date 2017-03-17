@@ -2,15 +2,13 @@
 
 include_once(dirname(__FILE__)."/../global.php");
 
-class addCard extends Api {
+class getPulseList extends Api {
     function main(){
         $this->getParams();
         $uid = $this->params['uid'];
         $proj_id = $this->params['proj_id'];
-        $canvas_id = $this->params['canvas_id'];
-        $title = $this->params['title'];
-        $assumption = $this->params['assumption'];
-        $this->result = $this->model->addCard($uid, $proj_id, $canvas_id, $title, $assumption);
+        $pulse_id = $this->params['pulse_id'];
+        $this->result = $this->model->getPulseList($uid, $proj_id, $pulse_id);
         if (is_int($this->result)) {
             $this->errmsg = $this->result;
             $this->result = '';
@@ -19,5 +17,5 @@ class addCard extends Api {
     }
 }
 
-$addCard = new addCard();
-$addCard->main();
+$getPulseList = new getPulseList();
+$getPulseList->main();

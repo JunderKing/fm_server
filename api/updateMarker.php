@@ -2,14 +2,14 @@
 
 include_once(dirname(__FILE__)."/../global.php");
 
-class updateSummary extends Api {
+class updateMarker extends Api {
     function main(){
         $this->getParams();
         $uid = $this->params['uid'];
         $proj_id = $this->params['proj_id'];
-        $content = $this->params['content'];
-        $photo_url = $this->params['photo_url'];
-        $this->result = $this->model->updateSummary($uid, $proj_id, $content, $photo_url);
+        $field = $this->params['field'];
+        $field_id = $this->params['field_id'];
+        $this->result = $this->model->updateMarker($uid, $proj_id, $field, $field_id);
         if (is_int($this->result)) {
             $this->errmsg = $this->result;
             $this->result = '';
@@ -18,5 +18,5 @@ class updateSummary extends Api {
     }
 }
 
-$updateSummary = new updateSummary();
-$updateSummary->main();
+$updateMarker = new updateMarker();
+$updateMarker->main();
